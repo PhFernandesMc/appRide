@@ -14,7 +14,7 @@ const RideDetailPage = () => {
       {rideID === ride.id ? (
         <div className="rideDetailContainer">
           <div className="buttonContainers">
-            <Link to={"/"}>
+            <Link to={"/appRide"}>
               <button className="closeButton">X</button>
             </Link>
           </div>

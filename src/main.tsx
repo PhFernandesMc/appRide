@@ -9,15 +9,15 @@ import ErrorPage from "./pages/ErrorPage.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/appRide",
     element: <HomePage />,
   },
   {
-    path: "/Ride",
+    path: "/appRide/Ride",
     element: <RidePage />,
   },
   {
-    path: "/rideDetail/:rideID",
+    path: "/appRide/rideDetail/:rideID",
     element: <RideDetailPage />,
   },
   {

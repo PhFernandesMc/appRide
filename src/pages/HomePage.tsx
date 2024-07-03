@@ -17,15 +17,13 @@ const HomePage = () => {
       <ul className="rideList">
         {allRides.length > 0 ? (
           allRides.map((ride, index) => (
-            <div key={index}>
-              {ride.value.data ? (
-                <Link to={`rideDetail/${ride.id}`} state={{ data: ride }}>
-                  <RideItem ride={ride} />
-                </Link>
-              ) : (
-                <></>
-              )}
-            </div>
+            <Link
+              key={index}
+              to={`/appRide/rideDetail/${ride.id}`}
+              state={{ data: ride }}
+            >
+              <RideItem ride={ride} />
+            </Link>
           ))
         ) : (
           <li>
@@ -34,7 +32,7 @@ const HomePage = () => {
         )}
       </ul>
       <div className="buttonContainer">
-        <Link to="/Ride">
+        <Link to="/appRide/Ride">
           <button className="newRideButton">
             <p className="newRideButtonText">+</p>
           </button>

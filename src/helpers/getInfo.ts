@@ -101,14 +101,17 @@ export const getData = async (
 ) => {
   const allRidesStringified: [string, string][] = getAllRides();
 
-  const allRides: rideInfoType[] = await Promise.all(
+  const allRides = await Promise.all(
     allRidesStringified.map(async (ride: [string, string]) => {
       try {
         const rideObj: rideType = JSON.parse(ride[1]);
+        if (rideObj.data.length === 0) return null;
+        
         const locationData = await getLocationData(
           rideObj.data[0].latitude,
           rideObj.data[0].longitude
         );
+        
         const duration: string = getDuration(
           rideObj.startTime,
           rideObj.stopTime
@@ -116,6 +119,7 @@ export const getData = async (
         const date: string = getStartDate(rideObj.startTime);
         const maxSpeed: string = getMaxSpeed(rideObj.data);
         const totalDistance: string = getDistance(rideObj.data);
+        
         return {
           id: ride[0],
           value: rideObj,
@@ -127,10 +131,10 @@ export const getData = async (
         };
       } catch (error) {
         console.error("Error processing ride data:", error);
-        throw error;
+        return null; // Skip this ride
       }
     })
   );
 
-  setState(allRides);
+  setState(allRides.filter((ride) => ride !== null));
 };
