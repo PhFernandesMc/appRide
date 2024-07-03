@@ -44,14 +44,14 @@ const RidePage = () => {
 
   const stopRide = () => {
     if (!watchID) {
-      window.location.replace("/");
+      window.location.replace("/appRide");
       return;
     }
     if (currentRide) updateStopTime(currentRide);
     navigator.geolocation.clearWatch;
     setCurrentRide(null);
     setWatchID(0);
-    window.location.replace("/");
+    window.location.replace("/appRide");
   };
 
   return (
