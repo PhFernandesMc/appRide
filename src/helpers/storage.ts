@@ -12,5 +12,5 @@ export const getAllRides = (): [string, string][] => {
 
 export const deleteRide = (rideID: string) => {
   localStorage.removeItem(rideID)
-  window.location.replace("/")
+  window.location.replace("/appRide")
 }
