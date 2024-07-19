@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { rideItemProps } from "../types";
+import marker from "/location.png";
 
 const RideItem = ({ ride }: rideItemProps) => {
   useEffect(() => {
@@ -17,9 +18,6 @@ const RideItem = ({ ride }: rideItemProps) => {
       { minZoom: 10, maxZoom: 18 }
     ).addTo(map);
 
-    L.marker([ride.value.data[0].latitude, ride.value.data[0].longitude])
-      .addTo(map)
-
     return () => {
       map.remove();
     };
@@ -28,10 +26,9 @@ const RideItem = ({ ride }: rideItemProps) => {
   return (
     <li className="rideItem" id={ride.id}>
       <div className="mapElement">
-        <div
-          className="map"
-          id={`map-${ride.id}`}
-        ></div>
+        <div className="map" id={`map-${ride.id}`}>
+          <img className="map-marker" src={marker} alt="" />
+        </div>
       </div>
       <div className="dataElement">
         <div className="cityInfo">
